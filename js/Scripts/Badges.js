@@ -1,3 +1,4 @@
+//Devuelve la clase de la badge dependiendo del estado
 export function getStatusColor(status) {
     switch (status) {
       case 1:

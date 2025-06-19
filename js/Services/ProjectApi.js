@@ -1,3 +1,5 @@
+
+//Llamada a la api para crear un proyecto
 export async function createProject(title, description, estimatedAmount, estimatedDuration, area, type, user) {
   const baseUrl = "https://localhost:7160/api/project";
 
@@ -37,7 +39,7 @@ export async function createProject(title, description, estimatedAmount, estimat
   }
 }
 
-//LLAMADA PARA FILTRAR PROYECTOS, DEVUELVE PROJECTSHORT
+//Llamada a la api para filtrar proyectos
 export async function getFiltered(filters = {}) {
   const baseUrl = "https://localhost:7160/api/project";
   const params = new URLSearchParams();
@@ -82,6 +84,7 @@ export async function getFiltered(filters = {}) {
   }
 }
 
+//Toma una lista de proyectos y devuelve esos proyectos en su formato completo, llamando por id a cada proyecto
 export async function getProjectsComplete(projects) {
 
   const completeProjets = [];
@@ -95,6 +98,8 @@ export async function getProjectsComplete(projects) {
 
 }
 
+
+//Llamada a la api para obtener proyecto por id
 export async function getById(id) {
   const url = `https://localhost:7160/api/project/${id}`;
 
@@ -120,6 +125,8 @@ export async function getById(id) {
   }
 }
 
+
+//Llamada a la api para cambiar información de un proyecto
 export async function updateProjectInformation(id, title, description, estimatedDuration) {
   const url = `https://localhost:7160/api/project/${id}`;
 
@@ -161,6 +168,8 @@ export async function updateProjectInformation(id, title, description, estimated
   }
 }
 
+
+//LLamada a la api para decidir un paso
 export async function ChangeSepStatus(projectId, id, user, status, observation) {
   const url = `https://localhost:7160/api/project/${projectId}/decision`;
 
@@ -199,6 +208,8 @@ export async function ChangeSepStatus(projectId, id, user, status, observation) 
   }
 }
 
+
+// Filtra los proyectos a los que pertenece un usuario
 export function filterUserProjects(projects, userId, userRole) {
   let filteredProjects = [];
 
@@ -225,6 +236,8 @@ export function filterUserProjects(projects, userId, userRole) {
   return filteredProjects;
 }
 
+
+//Devuelve los proximos pasos de aprobación de un rol
 export async function getUserNextSteps(roleId) {
   const filters = {};
 

@@ -16,9 +16,9 @@ import {
     renderProjectListComplete
 } from './Components/PresentProject.js';
 
-import { renderGenerics } from './Components/Generic.js';
+import { renderGenerics, printStatuses } from './Components/Generic.js';
 
-import { printStatuses, cargarUsuariosEnSelect, printUsers } from './Components/CambiarUsuario.js';
+import { cargarUsuariosEnSelect, printUsers } from './Components/User.js';
 
 import { getUsersAsync } from './Services/Users.js';
 import { getStatusesAsync } from './Services/Status.js';

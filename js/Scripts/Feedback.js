@@ -1,3 +1,4 @@
+//Crea una alerta
 function crearAlerta(divId, message, tipo = 'success') {
     const container = document.getElementById(divId);
     if (!container) return;
@@ -19,7 +20,7 @@ function crearAlerta(divId, message, tipo = 'success') {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
         </div>
     `;
-    // Hacer scroll hasta el contenedor para que se vea la alerta
+    // Hacer scroll hasta el inicio para que se vea la alerta
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
 
@@ -35,18 +36,19 @@ function crearAlerta(divId, message, tipo = 'success') {
         }
     });
 
-    // Autocerrar después de 3 segundos
+    // Cerrar después de 3 segundos
     setTimeout(() => {
         const bsAlert = bootstrap.Alert.getOrCreateInstance(alertDiv);
         bsAlert.close();
     }, 4000);
 }
 
-
+//Alerta de exito con un input y un output
 export function mostrarFeedbackExito(divId, message) {
     crearAlerta(divId, message, 'success');
 }
 
+//Alerta de error con un input y un output
 export function mostrarFeedbackError(divId, message) {
     crearAlerta(divId, message, 'error');
 }

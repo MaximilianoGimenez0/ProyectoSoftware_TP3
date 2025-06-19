@@ -1,5 +1,6 @@
 import { getStatusColor } from "../Scripts/Badges.js";
 
+//Opciones para la zona horaria 
 const opciones = {
   day: '2-digit',
   month: '2-digit',
@@ -9,6 +10,7 @@ const opciones = {
   hour12: false
 };
 
+//Pintar los proyectos completos, juntos con sus pasos
 export function renderProjectListComplete(projects, containerId) {
   const container = document.getElementById(containerId);
   if (!container || !Array.isArray(projects)) return;
@@ -126,7 +128,7 @@ export function renderProjectListComplete(projects, containerId) {
   `;
 }
 
-
+//Pintar los proximos steps junto con la información del proyecto al que pertenece
 export function renderNextSteps(steps, containerId) {
   const container = document.getElementById(containerId);
   if (!container || !Array.isArray(steps)) return;

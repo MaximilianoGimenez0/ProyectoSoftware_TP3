@@ -1,4 +1,4 @@
-
+//Llamada a la api para obtener las áreas
 export async function getAreas() {
     const url = "https://localhost:7160/api/Area";
 
@@ -22,7 +22,7 @@ export async function getAreas() {
     }
 }
 
-
+//Llamada a la api para obtener los estados
 export async function getStatuses() {
     const url = "https://localhost:7160/api/ApprovalStatus";
 
@@ -46,6 +46,7 @@ export async function getStatuses() {
     }
 }
 
+//Llamada a la api para obtener los roles
 export async function getRoles() {
     const url = "https://localhost:7160/api/Role";
 
@@ -69,6 +70,7 @@ export async function getRoles() {
     }
 }
 
+//Llamada a la api para obtener los tipos
 export async function getTypes() {
     const url = "https://localhost:7160/api/ProjectType";
 
@@ -92,6 +94,7 @@ export async function getTypes() {
     }
 }
 
+//Llamada a la api para obtener los usuarios
 export async function getUsers() {
     const url = "https://localhost:7160/api/User";
 
