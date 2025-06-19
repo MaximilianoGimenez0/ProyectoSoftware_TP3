@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS y Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Proyectos</title>
+</head>
+
+<body>
+
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+
+            <!-- Botón responsive para colapsar el menú -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Ítems del menú -->
+            <div class="collapse navbar-collapse" id="navbar-nav">
+                <ul class="navbar-nav me-auto">
+                    <!-- Sección Landing -->
+                    <li class="nav-item rounded">
+                        <a class="nav-link nav-link-brand d-flex align-items-center gap-2 btn-primary" href="#"
+                            data-section="landingSection">
+                            <i class="bi bi-diagram-3-fill"></i>
+                            Aprobación de Proyectos
+                        </a>
+                    </li>
+
+                    <!-- Sección Crear Proyecto -->
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 btn-primary rounded" href="#"
+                            data-section="crearProyectoSection">
+                            <i class="bi bi-plus-square"></i>
+                            Crear Proyecto
+                        </a>
+                    </li>
+
+                    <!-- Sección Buscar Proyectos -->
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 rounded btn-primary" href="#"
+                            data-section="buscarProyectoSection">
+                            <i class="bi bi-search"></i>
+                            Buscar proyectos
+                        </a>
+                    </li>
+
+                    <!-- Sección Aprobar Pasos -->
+                    <li class="nav-item">
+                        <a id="step-results-link" class="nav-link d-flex align-items-center gap-2 rounded btn-primary"
+                            href="#" data-section="pasoProyectoSection">
+                            <i class="bi bi-check2-square"></i>
+                            Aprobar y rechazar pasos
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Información del usuario actual -->
+                <div id="selectedUser" class="text-white me-4">
+                    <h6 class="m-0">Usuario: <span id="nombreUsuarioLabel">No seleccionado</span></h6>
+                </div>
+
+                <!-- Botón para cambiar de usuario -->
+                <button class="btn btn-primary" id="cambiarUsuarioBtn">
+                    <i class="bi bi-person-circle me-1"></i>
+                    Cambiar Usuario
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal para seleccionar usuario -->
+    <div class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="usuarioModalLabel">Seleccionar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="usuarioForm">
+                        <div class="mb-3">
+                            <label for="userSelector" class="form-label">Usuarios disponibles</label>
+                            <select class="form-select" id="userSelector" required></select>
+                        </div>
+                    </form>
+                    <div id="seleccionar-usuario-feedback" class="container">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="seleccionarUsuarioBtn">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main id="mainContent">
+
+        <!-- Página de inicio -->
+        <section id="landingSection">
+            <div class="container text-center">
+                <h1 class="mb-4 display-4">Bienvenido al Sistema de Aprobación de Proyectos</h1>
+                <p class="lead mb-4">Gestioná proyectos, revisá pasos y colaborá con tus compañeros de forma eficiente.
+                </p>
+
+                <div class="d-flex justify-content-center gap-3 mb-5">
+                    <a href="#" class="btn btn-primary btn-lg" data-section="crearProyectoSection">
+                        <i class="bi bi-plus-circle me-2"></i>Crear Proyecto
+                    </a>
+                    <a href="#" class="btn btn-primary btn-lg" data-section="buscarProyectoSection">
+                        <i class="bi bi-search me-2"></i>Buscar Proyectos
+                    </a>
+                    <a href="#" class="btn btn-primary btn-lg" data-section="pasoProyectoSection">
+                        <i class="bi bi-check2-square me-2"></i>Aprobar y rechazar pasos
+                    </a>
+                </div>
+
+                <div class="row mt-4 text-start">
+                    <div class="col-md-4 mb-4">
+                        <h3><i class="bi bi-plus-circle me-2"></i>Crear Proyecto</h3>
+                        <ul>
+                            <li>Solo podés crear un proyecto a la vez</li>
+                            <li>No se permiten proyectos con el mismo título</li>
+                            <li>Al crear un proyecto debés cargar título, descripción, duración y monto estimado, además
+                                de seleccionar el área y tipo correspondiente</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <h3><i class="bi bi-search me-2"></i>Buscar proyectos</h3>
+                        <ul>
+                            <li>Filtrar por título, estado, área, tipo o usuarios involucrados</li>
+                            <li>Ver solo los proyectos en los que participás</li>
+                            <li>Editar proyectos solo en estado de *Observación*</li>
+                            <li>En edición, podeés cambiar título, duración y descripción</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <h3><i class="bi bi-check2-square me-2"></i>Aprobar o Rechazar pasos</h3>
+                        <ul>
+                            <li>Solo podés ver los pasos que necesitan tu aprobación</li>
+                            <li>Solo se muestra el próximo paso pendiente de aprobación</li>
+                            <li>Registrar decisión y observaciones en cada paso</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Onda decorativa inferior -->
+            <svg class="wave-svg" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path fill="#2F7977" fill-opacity="0.6"
+                    d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,154.7C672,171,768,213,864,197.3C960,181,1056,107,1152,80C1248,53,1344,75,1392,85.3L1440,96L1440,320L0,320Z">
+                </path>
+            </svg>
+        </section>
+
+
+        <!-- Sección para crear proyectos -->
+        <section id="crearProyectoSection">
+            <div class="mb-5 container">
+                <h2 class="text-center mb-4">Crear un Proyecto</h2>
+                <form id="createProjectForm" class="border p-4 rounded shadow-sm">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="inputCreateProjectTitle" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="inputCreateProjectTitle" required />
+                        </div>
+                        <div class="col mb-3">
+                            <label for="inputCreateProjectDescription" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="inputCreateProjectDescription" required />
+                        </div>
+                        <div class="col mb-3">
+                            <label for="inputCreateProjectEstimatedAmount" class="form-label">Monto estimado</label>
+                            <input type="number" class="form-control" id="inputCreateProjectEstimatedAmount" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="inputCreateProjectEstimatedDuration" class="form-label">Duración
+                                estimada</label>
+                            <input type="number" class="form-control" id="inputCreateProjectEstimatedDuration"
+                                required />
+                        </div>
+                        <div class="col">
+                            <label for="inputCreateProjectArea" class="form-label">Área</label>
+                            <select class="form-select" id="inputCreateProjectArea"></select>
+                        </div>
+                        <div class="col">
+                            <label for="inputCreateProjectType" class="form-label">Tipo</label>
+                            <select class="form-select" id="inputCreateProjectType"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button id="create-project-btn" class="btn btn-primary" type="submit">Crear
+                                Proyecto</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Área de feedback -->
+            <div class="col container feedback-div d-none" id="createProjectResult"></div>
+
+        </section>
+
+        <section id="buscarProyectoSection" class="d-none">
+            <div class="container">
+                <div class="row">
+                    <h2 class="mb-4 col">Buscar Proyectos</h2>
+
+                    <div id="buscar-proyectos-feedback" class="container col">
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <button id="filtersBtn" class="btn btn-secondary me-2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#project-filters" aria-expanded="false"
+                            aria-controls="project-filters">Filtros</button>
+                        <button id="filter-btn" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+
+                <div id="project-filters" class="collapse mb-4">
+                    <div class="card p-4">
+                        <h4 class="mb-3">Filtros</h4>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="filter-title" class="form-label">Título</label>
+                                <input type="text" id="filter-title" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="filter-status" class="form-label">Estado</label>
+                                <select class="form-select" id="filter-status"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="filter-applicant" class="form-label">Usuario creador</label>
+                                <select class="form-select" id="filter-applicant"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="filter-approver" class="form-label">Usuario que puede aprobar</label>
+                                <select class="form-select" id="filter-approver"></select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="filter-check" />
+                                    <label for="filter-check" class="form-check-label">Solo donde participo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="mb-3">Resultados de la búsqueda</h4>
+                <div id="project-list-filtered-container" class="p-3 rounded shadow-sm border"></div>
+            </div>
+        </section>
+
+
+        <section id="pasoProyectoSection" class="d-none">
+
+            <div class="container-fluid p-4">
+
+                <div class="row">
+                    <!-- Columna izquierda -->
+                    <div class="col-md-3">
+                        <h2 class="mb-4">Aprobar/Rechazar</h2>
+
+                        <div id="aprobar-proyectos-feedback" class="container">
+
+                        </div>
+
+                        <div id="stepDecisionResult" class="d-none"></div>
+
+                        <button class="btn btn-primary mb-3" id="refrescarPasosBtn">
+                            <i class="bi bi-arrow-clockwise me-1"></i>
+                            Actualizar
+                        </button>
+                    </div>
+
+                    <!-- Columna derecha: resultados -->
+                    <div class="col-md-9">
+                        <h4 id="pending-steps-title">Pasos pendientes para aprobar</h4>
+                        <div id="step-results" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="decidirModal" tabindex="-1" aria-labelledby="decidirModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="decidirModalLabel">Decidir Paso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="modalStepId">
+                            <input type="hidden" id="modalUserId">
+                            <input type="hidden" id="modalStepProjectId">
+                            <div class="mb-3">
+                                <label for="modal-stepDecision-status-selector" class="form-label">Nuevo estado</label>
+                                <select class="form-select" id="modal-stepDecision-status-selector"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="modalObservations" class="form-label">Observaciones</label>
+                                <textarea class="form-control" id="modalObservations" rows="3"
+                                    placeholder="Ingrese una observación..." required></textarea>
+                            </div>
+                            <div id="decidir-modal-feedback" class="container">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="confirmDecisionBtn" class="btn btn-primary">Confirmar
+                                decisión</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Bootstrap JS y scripts del sistema -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
+        </script>
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+
+</html>
