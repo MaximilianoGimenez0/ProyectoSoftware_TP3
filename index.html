@@ -9,7 +9,9 @@
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Proyectos</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <title>Gestión de proyectos</title>
 </head>
 
 <body>
@@ -18,62 +20,57 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <!-- Botón responsive para colapsar el menú -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav">
-                <span class="navbar-toggler-icon"></span>
+            <!-- Ítems del menú -->
+
+            <ul class="navbar-nav me-auto">
+                <!-- Sección Landing -->
+                <li class="nav-item rounded">
+                    <a class="nav-link nav-link-brand d-flex align-items-center gap-2 btn-primary" href="#"
+                        data-section="landingSection">
+                        <i class="bi bi-diagram-3-fill"></i>
+                        Aprobación de Proyectos
+                    </a>
+                </li>
+
+                <!-- Sección Crear Proyecto -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 btn-primary rounded" href="#"
+                        data-section="crearProyectoSection">
+                        <i class="bi bi-plus-square"></i>
+                        Crear Proyecto
+                    </a>
+                </li>
+
+                <!-- Sección Buscar Proyectos -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 rounded btn-primary" href="#"
+                        data-section="buscarProyectoSection">
+                        <i class="bi bi-search"></i>
+                        Buscar proyectos
+                    </a>
+                </li>
+
+                <!-- Sección Aprobar Pasos -->
+                <li class="nav-item">
+                    <a id="step-results-link" class="nav-link d-flex align-items-center gap-2 rounded btn-primary"
+                        href="#" data-section="pasoProyectoSection">
+                        <i class="bi bi-check2-square"></i>
+                        Aprobar y rechazar pasos
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Información del usuario actual -->
+            <div id="selectedUser" class="text-white me-4">
+                <h6 class="m-0">Usuario: <span id="nombreUsuarioLabel">No seleccionado</span></h6>
+            </div>
+
+            <!-- Botón para cambiar de usuario -->
+            <button class="btn btn-primary" id="cambiarUsuarioBtn">
+                <i class="bi bi-person-circle me-1"></i>
+                Cambiar Usuario
             </button>
 
-            <!-- Ítems del menú -->
-            <div class="collapse navbar-collapse" id="navbar-nav">
-                <ul class="navbar-nav me-auto">
-                    <!-- Sección Landing -->
-                    <li class="nav-item rounded">
-                        <a class="nav-link nav-link-brand d-flex align-items-center gap-2 btn-primary" href="#"
-                            data-section="landingSection">
-                            <i class="bi bi-diagram-3-fill"></i>
-                            Aprobación de Proyectos
-                        </a>
-                    </li>
-
-                    <!-- Sección Crear Proyecto -->
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2 btn-primary rounded" href="#"
-                            data-section="crearProyectoSection">
-                            <i class="bi bi-plus-square"></i>
-                            Crear Proyecto
-                        </a>
-                    </li>
-
-                    <!-- Sección Buscar Proyectos -->
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2 rounded btn-primary" href="#"
-                            data-section="buscarProyectoSection">
-                            <i class="bi bi-search"></i>
-                            Buscar proyectos
-                        </a>
-                    </li>
-
-                    <!-- Sección Aprobar Pasos -->
-                    <li class="nav-item">
-                        <a id="step-results-link" class="nav-link d-flex align-items-center gap-2 rounded btn-primary"
-                            href="#" data-section="pasoProyectoSection">
-                            <i class="bi bi-check2-square"></i>
-                            Aprobar y rechazar pasos
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- Información del usuario actual -->
-                <div id="selectedUser" class="text-white me-4">
-                    <h6 class="m-0">Usuario: <span id="nombreUsuarioLabel">No seleccionado</span></h6>
-                </div>
-
-                <!-- Botón para cambiar de usuario -->
-                <button class="btn btn-primary" id="cambiarUsuarioBtn">
-                    <i class="bi bi-person-circle me-1"></i>
-                    Cambiar Usuario
-                </button>
-            </div>
         </div>
     </nav>
 

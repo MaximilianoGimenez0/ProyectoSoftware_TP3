@@ -19,22 +19,29 @@ function crearAlerta(divId, message, tipo = 'success') {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
         </div>
     `;
+    // Hacer scroll hasta el contenedor para que se vea la alerta
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
+
+    // Mostrar el contenedor y agregar la alerta
     container.classList.remove('d-none');
     container.appendChild(alertDiv);
 
-    // Autocerrar después de 3 segundos y remover del DOM
+    // Manejar el cierre con evento antes de llamar a close()
+    alertDiv.addEventListener('closed.bs.alert', () => {
+        alertDiv.remove();
+        if (container.children.length === 0) {
+            container.classList.add('d-none');
+        }
+    });
+
+    // Autocerrar después de 3 segundos
     setTimeout(() => {
         const bsAlert = bootstrap.Alert.getOrCreateInstance(alertDiv);
         bsAlert.close();
-        alertDiv.addEventListener('closed.bs.alert', () => {
-            alertDiv.remove();
-            if (container.children.length === 0) {
-                container.classList.add('d-none');
-            }
-        });
-    }, 3000);
+    }, 4000);
 }
+
 
 export function mostrarFeedbackExito(divId, message) {
     crearAlerta(divId, message, 'success');
